@@ -9,7 +9,7 @@ addressable LEDs.
 // TODO - expand introduction, build small tutorial, and add more pointers to relevant things on the web.  
  
 ### Currently Supported Platforms:
-- Pixelblaze (www.electromage.com)
+- [Pixelblaze](https://github.com/zranger1/SDF-LED/tree/main/Pixelblaze)   (For more info: www.electromage.com)
 
 #### Coming Soon:
 ??? 
