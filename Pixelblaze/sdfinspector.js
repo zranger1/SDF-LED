@@ -144,7 +144,7 @@ function hexStar(x,y,r) {
 }
 
 function crossWrapper(x,y,r) {
-  return cross(x,y,r,0.02)
+  return cross(x,y,r,0.05)
 }
 
 function cross(x,y,size,armWidth) {
@@ -269,8 +269,9 @@ function markerT(x,y,size) {
 }
 
 function markerCheck(px,py,size){
-    x = -SQRT1_2 * (px - py);
-    y =  SQRT1_2 * (px + py);
+    cntr = size / 2;
+    x = -SQRT1_2 * (px - py) + cntr
+    y =  SQRT1_2 * (px + py) + cntr;
     size = size*2
     r1 = max(abs(x - 2.*size/3.), abs(x - 1.*size/3.));
     r2 = max(abs(y - 2.*size/3.), abs(y - size/3.));
@@ -325,7 +326,7 @@ function markerChevron(px,py,size){
 
 function markerRing(px,py,size){
     r1 = circle(px,py,size);
-    r2 = circle(px,py,size/1.02);
+    r2 = circle(px,py,size/2);
     return max(r1,-r2);
 }
 
@@ -333,9 +334,9 @@ function markerInfinity(px,py,size){
     c1x = .125
     size = size * 4
     r1 = circle(px-c1x*size,py,size/6);
-    r2 = circle(px-c1x*size,py,size/8);
+    r2 = circle(px-c1x*size,py,size/10);
     r3 = circle(px+c1x*size,py,size/6);
-    r4 = circle(px+c1x*size,py,size/8);
+    r4 = circle(px+c1x*size,py,size/10);
     return min( max(r1,-r2), max(r3,-r4));
 }
 
