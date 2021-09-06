@@ -3,6 +3,7 @@ These operators let you duplicate, combine and alter the shapes of signed
 distance functions.  (Very, very preliminary implementations -- will be changed
 quite frequently for a while, till we arrive at something fast and easily useable. Z-08/19/21)
 
+
 ### Infinite Repeats
 Careful about cx and cy.  They're the distance between
 repeats in world coordinates.  A factor of 0.5 will
