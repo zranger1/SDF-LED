@@ -5,6 +5,11 @@ export var objectSize = 0.4;
 export var lineWidth = 0.05;
 export var sides = 4;
 export var shape = 0;
+var filled = 1;
+
+var shapeCompare = array(2);
+shapeCompare[0] = (f) => (abs(f) <= lineWidth); // unfilled shapes
+shapeCompare[1] = (f) => (f <= lineWidth);      // filled shapes
 
 var NSHAPES = 24;
 var shapeFns = array(NSHAPES);
@@ -48,8 +53,8 @@ export function sliderLineWidth(v){
   lineWidth = 0.25 * v * v;
 }
 
-export function sliderSides(v) {
-  sides = 3+floor(5*v);
+export function sliderFilled(v) {
+  filled = (v > 0.5);
 }
 
 // UTILITY FUNCTIONS //////////////////////////
@@ -360,6 +365,6 @@ export function beforeRender(delta) {
 // render object, color determined by distance from boundary
 export function render2D(index,x,y) {
   d = shapeFns[shape](x,y,objectSize);
-  hsv((lineWidth-d), 1, (d <= lineWidth));
+  hsv((lineWidth-d), 1, shapeCompare[filled](d));
 }
 
