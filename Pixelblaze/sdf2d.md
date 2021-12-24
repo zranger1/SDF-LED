@@ -63,6 +63,31 @@ function smoothstep(l,h,v) {
 }
 ```
 
+### Smooth min
+// polynomial smooth min function
+// from https://www.iquilezles.org/www/articles/smin/smin.htm
+// Parameters:
+// a - value 1 
+// b - value 2
+// k - smoothness value in range 0.0 to 1.0.
+// (negative k values make this function as smooth max)
+function smin(a, b, k) {
+    var h = clamp(0.5 + 0.5*(a-b)/k, 0.0, 1.0);
+    return mix(a, b, h) - k*h*(1.0-h);
+}
+
+// polynomial smooth min function (alternate version, slightly faster)
+// from https://www.iquilezles.org/www/articles/smin/smin.htm
+// Parameters:
+// a - value 1 
+// b - value 2
+// k - smoothness value in range 0.0 to 1.0.
+function smin2(a, b, k) {
+    var h = max( k-abs(a-b), 0.0 )/k;
+    return min( a, b ) - h*h*k*(1.0/4.0);
+}
+
+
 ---
 
 ## Signed Distance functions for Simple Shapes
