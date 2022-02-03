@@ -84,8 +84,20 @@ function smin(a, b, k) {
 // k - smoothness value in range 0.0 to 1.0.
 function smin2(a, b, k) {
     var h = max( k-abs(a-b), 0.0 )/k;
-    return min( a, b ) - h*h*k*(1.0/4.0);
+    return min( a, b ) - h*h*k*0.25;
 }
+
+// https://iquilezles.org/www/articles/smin/smin.htm
+function smin2(a, b, k) {
+    var h = max( k-abs(a-b), 0.0 )/k;
+    return max( a, b ) + h*h*k*0.25;
+}
+
+function smax(float a, float b, float k) {
+    float h = max(k - abs(a - b), 0.0);
+    return max(a, b) + 0.25*h*h/k;
+}
+
 
 
 ---
