@@ -53,6 +53,14 @@ function mix(start,end,val) {
   return start * (1-val) + end * val;
 }
 ```
+### step
+Thresholding function.  Returns 0 if val is less than edge, 1 otherwise.
+```
+function step(edge, val) {
+   return val >= edge;
+}
+```
+
 ### Smoothstep
 Threshold function with a smooth transition.  Interpolates with a sigmoidal
 curve 0 and 1 when l < v < h. 
