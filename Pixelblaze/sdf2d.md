@@ -101,10 +101,16 @@ function smin2(a, b, k) {
     return max( a, b ) + h*h*k*0.25;
 }
 
-function smax(float a, float b, float k) {
-    float h = max(k - abs(a - b), 0.0);
+// smooth max
+function smax(a, b, k) {
+    var h = max(k - abs(a - b), 0.0);
     return max(a, b) + 0.25*h*h/k;
 }
+
+// alternate smooth max - simple, but requires having one of the smin functions
+// in the pattern as well.
+function smax(a,b,k) { return -smin(-a,-b,k);}
+
 
 
 
