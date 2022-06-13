@@ -92,3 +92,16 @@ function bendY(x,y,k) {
   outy = (s * x) - (c * y);
 }
 ```
+
+### Minkowski Distance (2D)
+A generalized method for distance calculation
+- p == 1 gives Manhattan Distance
+- p == 2 gives normal Euclidean distance
+- p == infinity gives Chebyshev distance
+
+Values of p between 0 and 1 can be visually... interesting!
+```
+function minkowskiDistance(x1,y1,x2,y2,p) {
+  return pow(pow(abs(x1 - x2), p) + pow(abs(y1 - y2), p),1.0 / p);
+}
+```
