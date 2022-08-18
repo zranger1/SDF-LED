@@ -2,7 +2,7 @@
 
 // UI control variables
 export var objectSize = 0.4;
-export var lineWidth = 0.05;
+export var lineWidth = 0.076;
 export var sides = 4;
 export var shape = 0;
 var filled = 1;
@@ -229,14 +229,15 @@ function lineSegment(x,y,x1,y1,x2,y2) {
 }
 
 function heart(x,y,r) {
-  var m;
   x = abs(x);
   y = r-y;
-  r *= 1.6;
+  
+  r *= 1.6;    
+
   if (x+y>r) {
-    return (sqrt(dot2(x - r*0.25,y - r*0.75)) - (r*0.3536));
+    return (sqrt(dot2(x - r*0.275,y - r*0.75)) - (r*0.3536));
   } else {
-    m = 0.5 * max(x + y,0);
+    var m = 0.5 * max(x + y,0);
     return sqrt(min(dot2(x,y-1),dot2(x-m,y-m)) * signum(x-y));
   }
 }
@@ -359,7 +360,7 @@ translate(-0.5,-0.5);
 
 // set up a timer for a little color shifting
 export function beforeRender(delta) {
-  t1 = time(0.1);
+
 }
 
 // render object, color determined by distance from boundary
