@@ -314,18 +314,38 @@ function lineSegment(x,y,x1,y1,x2,y2) {
 Draws cardioid shape. Low resolution makes the detail a little
 tricky - play with size and line width 'till its the way you like!
 ```
+// from http:// iquilezles.org/articles/distfunctions2d
+//
+// returns distance > 0 if outside the heart
+// distance <= 0 if on the outline or inside the heart
 function heart(x,y,r) {
-  var m;
+  
+  // mirror x axis around origin, and offset y 
+  // by the size of the heart-to-be
   x = abs(x);
   y = r-y;
-  r *= 2;
+  
+  // scale (er, fudge) factor 
+  r *= 1.6;    
+
   if (x+y>r) {
-    return (sqrt(dot2(x - r*0.25,y - r*0.75)) - (r*0.3536));
+    // draw the (automatically mirrored) half-circle upper curve of the heart
+    return sqrt(dot2(x - r * 0.275,y - r * 0.75)) - (r*0.35355);  // r * sqrt(2)/4   
   } else {
-    m = 0.5 * max(x + y,0);
-    return sqrt(min(dot2(x,y-1),dot2(x-m,y-m)) * signum(x-y));
+    // draw the lower (rotated box) section of the heart 
+    var m = 0.5 * max(x + y,0);   
+    return sqrt(min(dot2(x,y-1),dot2(x-m,y-m)) * (0 > (x-y) ? -1 : 1))
   }
 }
+
+// alternate heart sdf.  Faster, and looks better on some LED displays
+function heart2(x,y,r) {
+    x = x / r * 0.75;
+    y = -y / r + 0.5 - sqrt(abs(x));    
+    r = x * x + y * y;
+    return 1-r;
+}
+
 ```
 ---
 
